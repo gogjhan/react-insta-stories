@@ -11,6 +11,7 @@ export interface ReactInstaStoriesProps {
     loop?: boolean;
     defaultInterval?: number;
     isPaused?: boolean;
+    restartOnPause?: boolean;
     currentIndex?: number;
     renderers?: {
         renderer: Renderer;
@@ -32,6 +33,7 @@ export interface GlobalCtx {
     loop?: boolean;
     defaultInterval?: number;
     isPaused?: boolean;
+    restartOnPause?: boolean;
     currentIndex?: number;
     renderers?: {
         renderer: Renderer;

@@ -8,12 +8,18 @@ import StoriesContext from './../context/Stories'
 export default () => {
     const [count, setCount] = useState<number>(0)
     const { currentId, next, videoDuration, pause } = useContext<ProgressContext>(ProgressCtx)
-    const { defaultInterval, onStoryEnd, onStoryStart, onAllStoriesEnd } = useContext<GlobalCtx>(GlobalContext);
+    const { defaultInterval, restartOnPause, onStoryEnd, onStoryStart, onAllStoriesEnd } = useContext<GlobalCtx>(GlobalContext);
     const { stories } = useContext<StoriesContextInterface>(StoriesContext);
 
     useEffect(() => {
         setCount(0)
     }, [currentId, stories])
+
+    useEffect(() => {
+        if (restartOnPause) {
+            setCount(0)
+        }
+    }, [restartOnPause, pause])
 
     useEffect(() => {
         if (!pause) {
