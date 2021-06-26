@@ -14,6 +14,7 @@ export default function () {
 
     let mousedownId = useRef<any>();
     let isMounted = useRef<boolean>(true);
+    let overlay = useRef<any>();
 
     const { width, height, loop, currentIndex, isPaused, keyboardNavigation, storyContainerStyles = {} } = useContext<GlobalCtx>(GlobalContext);
     const { stories } = useContext<StoriesContextInterface>(StoriesContext);
@@ -61,6 +62,9 @@ export default function () {
     }
 
     const toggleState = (action: string, bufferAction?: boolean) => {
+        console.log('calling action', action)
+        if (action === 'next') return next()
+        if (action === 'previous') return previous()
         setPause(action === 'pause')
         setBufferAction(!!bufferAction)
     }
@@ -134,10 +138,10 @@ export default function () {
                 story={stories[currentId]}
                 getVideoDuration={getVideoDuration}
             />
-            <div style={styles.overlay}>
+            {/*<div ref={overlay} style={styles.overlay}>
                 <div style={{ width: '50%', zIndex: 999 }} onTouchStart={debouncePause} onTouchEnd={mouseUp('previous')} onMouseDown={debouncePause} onMouseUp={mouseUp('previous')} />
                 <div style={{ width: '50%', zIndex: 999 }} onTouchStart={debouncePause} onTouchEnd={mouseUp('next')} onMouseDown={debouncePause} onMouseUp={mouseUp('next')} />
-            </div>
+            </div>*/}
         </div>
     )
 }
