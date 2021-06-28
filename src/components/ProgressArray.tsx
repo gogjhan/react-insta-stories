@@ -16,10 +16,10 @@ export default () => {
     }, [currentId, stories])
 
     useEffect(() => {
-        if (restartOnPause) {
-            setCount(0)
-        }
-    }, [restartOnPause, pause])
+         if (pause && restartOnPause) {
+             setCount(0)
+         }
+     }, [restartOnPause, pause])
 
     useEffect(() => {
         if (!pause) {
@@ -27,8 +27,15 @@ export default () => {
         }
         return () => {
             cancelAnimationFrame(animationFrameId.current)
+            return
         }
     }, [currentId, pause])
+
+    useEffect(() => {
+        if (pause) {
+            cancelAnimationFrame(animationFrameId.current)
+        }
+    }, [count, pause])
 
     let animationFrameId = useRef<number>()
 
