@@ -18,7 +18,7 @@ function App() {
 					storyContainerStyles={{ borderRadius: 8, overflow: 'hidden' }}
 					stories={(
 						stories[0].map((media, index) => ({
-							content: ({ action, isPaused }) => {
+							content: ({ action, isPaused, active }) => {
 								const onLoad = () => {
 									loadedCount.current.count++
 									if (loadedCount.current.count === stories[0].length && !loadedCount.current.played) {

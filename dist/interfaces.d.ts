@@ -56,6 +56,7 @@ export declare type Action = (action: string, bufferAction?: boolean) => void;
 export interface Renderer extends React.FC<{
     action: Action;
     isPaused: boolean;
+    active: boolean;
     story: Story;
     config: {
         width?: NumberOrString;
