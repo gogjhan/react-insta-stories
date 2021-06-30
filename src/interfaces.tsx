@@ -84,6 +84,8 @@ export interface StoryProps {
     playState: boolean;
     getVideoDuration: Function;
     bufferAction: boolean;
+    index: number;
+    currentId: number;
 }
 
 export interface StoryState {

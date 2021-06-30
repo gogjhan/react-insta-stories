@@ -131,17 +131,19 @@ export default function () {
             }}>
                 <ProgressArray />
             </ProgressContext.Provider>
-            <Story
-                action={toggleState}
-                bufferAction={bufferAction}
-                playState={pause}
-                story={stories[currentId]}
-                getVideoDuration={getVideoDuration}
-            />
-            {/*<div ref={overlay} style={styles.overlay}>
-                <div style={{ width: '50%', zIndex: 999 }} onTouchStart={debouncePause} onTouchEnd={mouseUp('previous')} onMouseDown={debouncePause} onMouseUp={mouseUp('previous')} />
-                <div style={{ width: '50%', zIndex: 999 }} onTouchStart={debouncePause} onTouchEnd={mouseUp('next')} onMouseDown={debouncePause} onMouseUp={mouseUp('next')} />
-            </div>*/}
+            {stories.map(
+                (story, index) => (
+                    <Story
+                        action={toggleState}
+                        bufferAction={bufferAction}
+                        playState={pause}
+                        index={index}
+                        currentId={currentId}
+                        story={story}
+                        getVideoDuration={getVideoDuration}
+                    />
+                )
+            )}
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { StoryProps, GlobalCtx } from "./../interfaces";
 import GlobalContext from "./../context/Global";
 
@@ -17,6 +17,12 @@ const Story = (props: StoryProps) => {
 		}
 	}
 
+	useEffect(() => {
+		if (props.index === props.currentId && props.playState) {
+			props.action('play')
+		}
+	}, [props.currentId, props.playState])
+
 	const getStoryContent = () => {
 		let InnerContent = props.story.content;
 		let config = { width, height, loader, header, storyStyles };
@@ -31,7 +37,13 @@ const Story = (props: StoryProps) => {
 
 	return (
 		<div
-			style={{ ...styles.story, width: width, height: height }}
+			style={{
+				...styles.story,
+				width: width,
+				height: height,
+				zIndex: 98 - props.index,
+				animation: props.index < props.currentId ? '0.5s fadeOut forwards' : ''
+			}}
 		>
 			{getStoryContent()}
 		</div>
@@ -41,7 +53,7 @@ const Story = (props: StoryProps) => {
 const styles = {
 	story: {
 		display: "flex",
-		position: "relative",
+		position: "absolute",
 		overflow: "hidden",
 		alignItems: "center"
 	},
