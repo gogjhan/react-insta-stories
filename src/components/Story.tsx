@@ -32,6 +32,7 @@ const Story = (props: StoryProps) => {
 			story={props.story}
 			config={config}
 			messageHandler={rendererMessageHandler}
+			active={props.index === props.currentId}
 		/>
 	};
 
