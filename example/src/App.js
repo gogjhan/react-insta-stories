@@ -56,7 +56,11 @@ function Slide ({ media, action, onLoad = () => {} }) {
 	return (
 		<React.Fragment>
 			<img alt="" src={media} style={image} onLoad={onLoad}/>
-			<button onClick={() => action('play')} style={{position: 'absolute'}}>Play</button>
+			<div style={{position: 'absolute', display: 'flex'}}>
+			<button onClick={() => action('play')}>Play</button>
+			<button onClick={() => action('next')}>Next</button>
+			<button onClick={() => action('previous')}>Previous</button>
+			</div>
 		</React.Fragment>
 	)
 }

@@ -42,8 +42,7 @@ const Story = (props: StoryProps) => {
 				...styles.story,
 				width: width,
 				height: height,
-				zIndex: 98 - props.index,
-				animation: props.index < props.currentId ? '0.5s fadeOut forwards' : ''
+				zIndex: props.index === props.currentId ? 98 : 97 - props.index
 			}}
 		>
 			{getStoryContent()}
