@@ -62,6 +62,7 @@ export default function () {
     }
 
     const toggleState = (action: string, bufferAction?: boolean) => {
+        console.log('calling action', action)
         if (action === 'next') {
             return next()
         }
