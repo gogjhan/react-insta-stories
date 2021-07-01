@@ -9,7 +9,6 @@ function App() {
 
     const items = React.useMemo(() => {
         return <Stories
-					loop
 					keyboardNavigation
 					isPaused={true}
 					defaultInterval={6000}
@@ -52,14 +51,15 @@ function App() {
 	);
 }
 
-function Slide ({ media, action, onLoad = () => {} }) {
+function Slide ({ media, isPaused, action, onLoad = () => {} }) {
+	const actionName = isPaused ? 'play' : 'pause'
 	return (
 		<React.Fragment>
 			<img alt="" src={media} style={image} onLoad={onLoad}/>
 			<div style={{position: 'absolute', display: 'flex'}}>
-			<button onClick={() => action('play')}>Play</button>
-			<button onClick={() => action('next')}>Next</button>
-			<button onClick={() => action('previous')}>Previous</button>
+			<button onClick={() => action(actionName)}>{actionName}</button>
+			<button onClick={() => action('previous')}>previous</button>
+			<button onClick={() => action('next')}>next</button>
 			</div>
 		</React.Fragment>
 	)

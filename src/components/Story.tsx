@@ -17,12 +17,6 @@ const Story = (props: StoryProps) => {
 		}
 	}
 
-	useEffect(() => {
-		if (props.index === props.currentId && props.playState) {
-			props.action('play')
-		}
-	}, [props.currentId, props.playState])
-
 	const getStoryContent = () => {
 		let InnerContent = props.story.content;
 		let config = { width, height, loader, header, storyStyles };

@@ -62,9 +62,14 @@ export default function () {
     }
 
     const toggleState = (action: string, bufferAction?: boolean) => {
-        console.log('calling action', action)
-        if (action === 'next') return next()
-        if (action === 'previous') return previous()
+        if (action === 'next') {
+            return next()
+        }
+
+        if (action === 'previous') {
+            return previous()
+        }
+
         setPause(action === 'pause')
         setBufferAction(!!bufferAction)
     }
@@ -76,6 +81,7 @@ export default function () {
 
     const previous = () => {
         setCurrentIdWrapper(prev => prev > 0 ? prev - 1 : prev)
+        toggleState('play')
     }
 
     const next = () => {
@@ -85,6 +91,7 @@ export default function () {
             } else {
                 updateNextStoryId()
             }
+            toggleState('play')
         }
     };
 
@@ -93,6 +100,9 @@ export default function () {
     }
 
     const updateNextStoryId = () => {
+        if (currentId === stories.length - 1) {
+            return
+        }
         setCurrentIdWrapper(prev => {
             if (prev < stories.length - 1) return prev + 1
             return prev
